@@ -59,13 +59,10 @@ public class UserInterface {
 					}	
 				}else if(command.contains(outCmd)) {
 					int groupIndex = Integer.parseInt(command.substring(outCmd.length()));
-					CustomerGroup leaveGroup = sMgr.getCustomerGroupByIndex(groupIndex);
-					if(leaveGroup!=null) {
-						sMgr.leaves(sMgr.getCustomerGroupByIndex(groupIndex));
-					} else {
-						System.out.println("Invalid group number");
+					CustomerGroup leavingGroup = sMgr.getCustomerGroupByIndex(groupIndex);
+					if(leavingGroup != null) {
+						sMgr.leaves(leavingGroup);
 					}
-					
 				}else {
 					System.out.println("invalid command");
 				}

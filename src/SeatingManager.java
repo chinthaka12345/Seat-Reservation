@@ -81,21 +81,22 @@ public class SeatingManager {
 	 *
 	 * @param group the group
 	 */
-	public void leaves(CustomerGroup group) {
+	public void leaves(CustomerGroup leavingGroup) {
+		int leavingGrpIdx = leavingGroup.getIndex();
 		// Remove from customer group list
 		for(int i=0; i<this.customerGroupList.size(); i++) {
-			if(group.getIndex()==this.customerGroupList.get(i).getIndex()) {
-				System.out.println("remove : " + group.getIndex());
+			if(leavingGrpIdx==this.customerGroupList.get(i).getIndex()) {
+				System.out.println("remove : " + leavingGrpIdx);
 				this.customerGroupList.remove(i);
 				break;
 			} else {
-				System.out.println("Not match : " + this.customerGroupList.get(i).getIndex());
+				System.out.println("Not match : " + leavingGrpIdx);
 			}
 		}
 		
 		// Release table
-		if(group.getTable()!=null) {
-			Table table = group.getTable();
+		Table table = leavingGroup.getTable();
+		if(table!=null) {
 			List<Table> currList = this.vacantSeats.get(table.getVacantSeats());
 			for(int i=0; i<currList.size(); i++) {
 				if(table.getName().compareTo(currList.get(i).getName())==0) {
@@ -103,7 +104,7 @@ public class SeatingManager {
 					break;
 				}
 			}
-			table.setVacantSeats(table.getVacantSeats() + group.getSize());
+			table.setVacantSeats(table.getVacantSeats() + leavingGroup.getSize());
 			allocateTableForWaitings(table);
 		}
 
