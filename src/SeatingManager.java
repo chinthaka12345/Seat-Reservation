@@ -84,10 +84,10 @@ public class SeatingManager {
 	public void leaves(CustomerGroup leavingGroup) {
 		int leavingGrpIdx = leavingGroup.getIndex();
 		// Remove from customer group list
-		for(int i=0; i<this.customerGroupList.size(); i++) {
-			if(leavingGrpIdx==this.customerGroupList.get(i).getIndex()) {
+		for(CustomerGroup grpInList: customerGroupList) {
+			if(leavingGrpIdx==grpInList.getIndex()) {
 				System.out.println("remove : " + leavingGrpIdx);
-				this.customerGroupList.remove(i);
+				this.customerGroupList.remove(grpInList);
 				break;
 			} else {
 				System.out.println("Not match : " + leavingGrpIdx);
@@ -98,9 +98,9 @@ public class SeatingManager {
 		Table table = leavingGroup.getTable();
 		if(table!=null) {
 			List<Table> currList = this.vacantSeats.get(table.getVacantSeats());
-			for(int i=0; i<currList.size(); i++) {
-				if(table.getName().compareTo(currList.get(i).getName())==0) {
-					currList.remove(i);
+			for(Table currTbl: currList) {
+				if(table.getName().compareTo(currTbl.getName())==0) {
+					currList.remove(currTbl);
 					break;
 				}
 			}

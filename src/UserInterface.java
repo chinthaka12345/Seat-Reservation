@@ -62,6 +62,8 @@ public class UserInterface {
 					CustomerGroup leavingGroup = sMgr.getCustomerGroupByIndex(groupIndex);
 					if(leavingGroup != null) {
 						sMgr.leaves(leavingGroup);
+					} else {
+						System.out.println("invalid group");
 					}
 				}else {
 					System.out.println("invalid command");
