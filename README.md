@@ -6,3 +6,7 @@ javac -classpath . UserInterface.java
 
 Run:
 java -classpath . UserInterface
+
+Todo:
+Junit - testing
+[Plan to revise with BDD with cucumber]
